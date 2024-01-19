@@ -38,6 +38,13 @@
                     telephone: "",
                     date: `Le ${day}/${month}/${year} à ${hour}:${minute}`
                 }  
+            },
+            checkContacts() {
+                calls.forEach(element => {
+                    if (element.name == document.querySelector("#phoneNumber").value) {
+                        document.querySelector("#phoneName").value = element.name          
+                    }
+                });
             }
         }
     }
@@ -46,7 +53,7 @@
 
 <template>
     <div class="phone-pad">
-        <input type="number" id="phoneNumber" placeholder="Enter phone number with pad" v-model="CallsInfo.telephone" disabled>
+        <input @change="checkContacts()" type="number" id="phoneNumber" placeholder="Enter phone number with pad" v-model="CallsInfo.telephone" disabled>
         <input type="text" id="phoneName" placeholder="Enter a name" v-model="CallsInfo.name">
 
         <div class="pad">
